@@ -42,7 +42,10 @@ totalInt_x = dx + obj.linError.p.x;
 totalInt_u = du + obj.linError.p.u;
 
 %compute zonotope of state and input
-Rred = reduce(R,options.reductionTechnique,options.errorOrder);
+% Shen commented it out since we don't need it
+%Rred = reduce(R,options.reductionTechnique,options.errorOrder);
+Rred=R;
+
 Z=cartProd(Rred,options.U);
 
 %obtain hessian tensor
@@ -81,6 +84,7 @@ end
 error_rad_zono = zonotope(interval(-error_rad, error_rad));
 errorZon = error_mid + error_rad_zono;
 
-errorZon = reduce(errorZon,options.reductionTechnique,options.zonotopeOrder);
+% Shen commented it out since we don't need it
+%errorZon = reduce(errorZon,options.reductionTechnique,options.zonotopeOrder);
 
 %------------- END OF CODE --------------

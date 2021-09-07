@@ -44,7 +44,10 @@ IH_u = interval(options.U);
 totalInt_u = IH_u + obj.linError.p.u;
 
 %compute zonotope of state and input
-Rred = reduce(zonotope(R),options.reductionTechnique,options.errorOrder);
+% Shen commented it out since we don't need it
+% Rred = reduce(zonotope(R),options.reductionTechnique,options.errorOrder);
+Rred = zonotope(R);
+
 Z = cartProd(Rred,options.U);
 
 %obtain hessian tensor
@@ -91,7 +94,8 @@ end
 %combine results
 error_rad_zono = zonotope(interval(-error_rad,error_rad));
 errorZon = error_mid + error_rad_zono;
-errorZon = reduce(errorZon,options.reductionTechnique,options.intermediateOrder);
+% Shen commented it out since we don't need it
+%errorZon = reduce(errorZon,options.reductionTechnique,options.intermediateOrder);
 
 errorInt = supremum(abs(interval(errorZon)));
 
