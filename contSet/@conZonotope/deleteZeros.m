@@ -52,7 +52,15 @@ function res = deleteZeros(obj)
 
     % remove all-zero generators
     ind = find(sum(abs([G;A]),1) < eps);
-    G(:,ind) = []; A(:,ind) = [];
+
+%     Original code:
+%     https://github.com/TUMcps/CORA/blob/6f337141b18f79009e67b3dcd837db0f05f24596/contSet/%40conZonotope/deleteZeros.m#L55
+%     G(:,ind) = []; A(:,ind) = [];
+%     Shen fixed it:
+    G(:,ind) = [];
+    if ~isempty(A)
+      A(:,ind) = [];
+    end
     
     % construct resulting conZonotope object
     res = conZonotope(c,G,A,b);        
