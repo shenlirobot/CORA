@@ -54,7 +54,8 @@ function Rtp = linReach(obj,Rinit,options)
     end
     
     % order reduction
-    Rtp = reduce(Rtp,options.reductionTechnique,options.zonotopeOrder);
+    %Shen commented it out since we don't need it
+    %Rtp = reduce(Rtp,options.reductionTechnique,options.zonotopeOrder);
     
     % potentially restructure the polynomial zonotope
     if isa(Rtp,'polyZonotope') && isfield(options,'polyZono') && ...
